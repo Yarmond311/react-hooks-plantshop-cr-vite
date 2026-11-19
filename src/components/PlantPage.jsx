@@ -13,13 +13,17 @@ function PlantPage() {
       .then((data) => setPlants(data));
   }, []);
 
+  function handleAddPlant(newPlant) {
+    setPlants([...plants, newPlant]);
+  }
+
   const displayedPlants = plants.filter((plant) =>
     plant.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <main>
-      <NewPlantForm />
+      <NewPlantForm onAddPlant={handleAddPlant} />
       <Search searchTerm={searchTerm} onSearchChange={setSearchTerm} />
       <PlantList plants={displayedPlants} />
     </main>
